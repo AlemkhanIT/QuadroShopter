@@ -1,21 +1,17 @@
-import { isCursorAtEnd } from "@testing-library/user-event/dist/utils";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import Cards from "./components/Cards/Cards";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
  function App() {
-  const arr = [{
-    title:"Model x400",
-    price:500,
-    imgUrl:"img/Quadrocopters/Hd63c3fbf386047dda6aadf5baac8d63cK-800x800.webp"
-  },{
-    title:"Model Alem RX500",
-    price:5,
-    imgUrl:"img/Quadrocopters/d00daab4-8787-419f-b292-b04fb7df6295.jpg.webp"
-  }];
-
-  
+  const [items,setItems]=useState([]);
   const [isCarted, setIsCarted]=useState(false);
+  useEffect(()=>{
+    fetch('https://63d6c3a7dc3c55baf43c1957.mockapi.io/items').then((res)=>{
+      return res.json();
+    }).then((json)=>{
+      setItems(json);
+    })
+  },[]);
   return (
     <div className="wrapper">
       {isCarted?<div className="overlay">
@@ -34,7 +30,7 @@ import Header from "./components/Header";
       </div>
       <div className="items">
         
-          {arr.map((obj)=>(
+          {items.map((obj)=>(
             <Cards 
             title={obj.title}
             price={obj.price}
