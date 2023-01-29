@@ -1,0 +1,62 @@
+.card{
+    border-radius: 40px;
+    border: 1px solid #f3f3f3;
+    padding: 25px 30px;
+    padding-bottom: 40px;
+    display: flex;
+    max-width: 150px;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+    transition: .2s all ease-in-out;
+    background-color: white;
+    color:#160A18;
+    &:hover{
+      transform: translate(0,-10px);
+      box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+    }
+    img{
+      max-width: 133px;
+    }
+    p{
+      color: #BDBDBD;
+    }
+    span{
+      margin-top: 14px;
+      font-weight: 700;
+    }
+  }
+  
+  .liked{
+      top: 25px;
+      left: 28px;
+      padding: 9px 12px;
+      padding-top: 12px;
+      display: inline;
+      background: #fff;
+      border-radius: 8px;
+      border:1px solid #F2F2F2;
+      position: absolute;
+      cursor: pointer;
+  }
+  .carted{
+      display: inline;
+      bottom: 25px;
+      right: 28px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 9px 12px;
+      padding-top: 12px;
+      border:1px solid #F2F2F2;
+      position: absolute;
+      cursor: pointer;
+  }
+  .active{
+    &.liked{
+      display: inline;
+      background: #FEF0F0;
+    }
+    &.carted{
+      background: linear-gradient(180deg, #89F09C 0%, #3CC755 100%);
+    }
+  }
