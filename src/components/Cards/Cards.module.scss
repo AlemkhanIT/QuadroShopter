@@ -51,12 +51,29 @@
       position: absolute;
       cursor: pointer;
   }
-  .active{
-    &.liked{
+  .activeliked{
+    top: 25px;
+      left: 28px;
+      padding: 9px 12px;
+      padding-top: 12px;
       display: inline;
       background: #FEF0F0;
-    }
-    &.carted{
-      background: linear-gradient(180deg, #89F09C 0%, #3CC755 100%);
-    }
+      border-radius: 8px;
+      border:1px solid #F2F2F2;
+      position: absolute;
+      cursor: pointer;
+    display: inline;
+    
+  }
+  .activecarted{
+    display: inline;
+      bottom: 25px;
+      right: 28px;
+      border-radius: 8px;
+      padding: 9px 12px;
+      padding-top: 12px;
+      border:1px solid #F2F2F2;
+      position: absolute;
+      cursor: pointer;
+    background: linear-gradient(180deg, #89F09C 0%, #3CC755 100%);
   }

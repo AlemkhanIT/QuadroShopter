@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Drawer() {
+function Drawer(props) {
   return (
     <div className="drawer">
-          <div className="drawer__top"><h3>Cart</h3> <button><img src="/img/nonactive_cart.svg"/></button></div>
+          <div className="drawer__top"><h3>Cart</h3> <div onClick={props.onClose} className='button-close'><img src="/img/nonactive_cart.svg"/></div></div>
           <div className="drawer__cost">
           <div className="drawer__items">
             <div className="drawer__card">

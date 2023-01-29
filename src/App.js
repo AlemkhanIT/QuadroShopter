@@ -1,3 +1,5 @@
+import { isCursorAtEnd } from "@testing-library/user-event/dist/utils";
+import React,{useState} from "react";
 import Cards from "./components/Cards/Cards";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
@@ -11,12 +13,17 @@ import Header from "./components/Header";
     price:5,
     imgUrl:"img/Quadrocopters/d00daab4-8787-419f-b292-b04fb7df6295.jpg.webp"
   }];
+
+  
+  const [isCarted, setIsCarted]=useState(false);
   return (
     <div className="wrapper">
-      <div style={{display:"none"}} className="overlay">
-        <Drawer />
-      </div>
-    <Header />
+      {isCarted?<div className="overlay">
+        <Drawer onClose={()=>setIsCarted(!isCarted)} />
+      </div>:null}
+    <Header 
+      onClickCart={()=>setIsCarted(!isCarted)}
+    />
     <div className="content">
       <div className="on__content">
         <h1>The All Quadrocopters</h1>
@@ -32,7 +39,8 @@ import Header from "./components/Header";
             title={obj.title}
             price={obj.price}
             imgUrl={obj.imgUrl}
-            onClick={()=>console.log(obj)}/>
+            onClickPlus={()=>console.log(obj,"Добавили в корзину")}
+            onClickLike={()=>console.log(obj,"Добавили в избранные")}/>
           ))}
         
       </div>
