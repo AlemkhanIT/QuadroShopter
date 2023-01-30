@@ -92,7 +92,7 @@ body {
           font-weight:700 ;
         }
       }
-      button{
+      .btnClose{
         background-color: #fff;
         border: 1px solid #f3f3f3;
         border-radius: 8px;
@@ -104,28 +104,32 @@ body {
         }
       }
     }
-    .drawer__price{
-      & button{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        padding: 18px;
-        width: 100%;
-        border: 0;
-        cursor: pointer;
-        background-color: #160A18;
-        color: white;
-        border-radius: 18px;
-        font-size: 16px;
+    .buttonKl{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 18px;
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      background-color: #160A18;
+      color: white;
+      border-radius: 18px;
+      font-size: 16px;
+      font-weight: 700;
+      &:hover img{
+        transform: translateX(5px);
+      }
+      & img{
+        padding-left: 10px;
+        transition: all .2s ease-in-out;
+      }
+    }
+    .drawer__empty{
+      p{
+        font-size: 30px;
         font-weight: 700;
-        &:hover img{
-          transform: translateX(5px);
-        }
-        & img{
-          padding-left: 10px;
-          transition: all .2s ease-in-out;
-        }
       }
     }
     .drawer__final{
