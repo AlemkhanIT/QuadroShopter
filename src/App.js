@@ -4,6 +4,7 @@ import Drawer from "./components/Drawer";
 import Header from "./components/Header";
  function App() {
   const [items,setItems]=useState([]);
+  const [itemsCart,setItemsCart]=useState([]);
   const [isCarted, setIsCarted]=useState(false);
   useEffect(()=>{
     fetch('https://63d6c3a7dc3c55baf43c1957.mockapi.io/items').then((res)=>{
@@ -12,10 +13,19 @@ import Header from "./components/Header";
       setItems(json);
     })
   },[]);
+
+  const onAddToLike = (obj) =>{
+    console.log(obj)
+  }
+  const onAddToCart = (obj) =>{
+    setItemsCart(prev=>[...prev,obj]);
+  }
+  
+  
   return (
     <div className="wrapper">
       {isCarted?<div className="overlay">
-        <Drawer onClose={()=>setIsCarted(!isCarted)} />
+        <Drawer items={itemsCart} onClose={()=>setIsCarted(!isCarted)} />
       </div>:null}
     <Header 
       onClickCart={()=>setIsCarted(!isCarted)}
@@ -30,13 +40,13 @@ import Header from "./components/Header";
       </div>
       <div className="items">
         
-          {items.map((obj)=>(
+          {items.map((item)=>(
             <Cards 
-            title={obj.title}
-            price={obj.price}
-            imgUrl={obj.imgUrl}
-            onClickPlus={()=>console.log(obj,"Добавили в корзину")}
-            onClickLike={()=>console.log(obj,"Добавили в избранные")}/>
+            title={item.title}
+            price={item.price}
+            imgUrl={item.imgUrl}
+            onClickPlus={(obj)=>onAddToCart(obj)}
+            onClickLike={(obj)=>onAddToLike(obj)}/>
           ))}
         
       </div>
