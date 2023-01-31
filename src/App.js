@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
-import Cards from "./components/Cards/Cards";
 import axios from "axios";
+import Cards from "./components/Cards/Cards";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
  function App() {
@@ -17,9 +17,7 @@ import Header from "./components/Header";
     })
   },[]);
 
-  const onAddToLike = (obj) =>{
-    console.log(obj)
-  }
+  
   const onAddToCart = (obj) =>{
     axios.post('https://63d6c3a7dc3c55baf43c1957.mockapi.io/cart', obj)
     setItemsCart(prev=>[...prev,obj]);
@@ -50,7 +48,6 @@ import Header from "./components/Header";
         </label>
       </div>
       <div className="items">
-        
           {items.filter((item)=>item.title.toLowerCase().includes(search)).map((item,index)=>(
             <Cards 
             key={index}
@@ -58,9 +55,8 @@ import Header from "./components/Header";
             price={item.price}
             imgUrl={item.imgUrl}
             onClickPlus={(obj)=>onAddToCart(obj)}
-            onClickLike={(obj)=>onAddToLike(obj)}/>
+            />
           ))}
-        
       </div>
     </div>
     </div>
