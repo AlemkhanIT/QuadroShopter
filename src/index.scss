@@ -152,6 +152,7 @@ body {
     height: 180%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 2;
+    overflow:hidden;
   }
 
 .header{
@@ -212,12 +213,17 @@ body {
     color: white;
   }
 }
-
+a{
+  text-decoration: none;
+}
+a:visited{
+  color: white;
+}
 .content{
   padding: 40px;
 }
 .items{
   display: flex;
   flex-wrap: wrap;
-  gap: 35px;
+  gap: 42px;
 }

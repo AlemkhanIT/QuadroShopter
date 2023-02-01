@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
+
 
 function Drawer({onClose, items=[],onRemove}) {
   
@@ -8,7 +10,7 @@ function Drawer({onClose, items=[],onRemove}) {
           {items.length==0?(
             <div className='drawer__empty'><p>Cart is empty</p><br/>
             <img height={340} src='img/box.webp'/>
-            <button onClick={onClose} className='buttonKl'>Go back to add to cart <img src="img/strela.svg" /></button>
+            <Link to="/"><button onClick={onClose} className='buttonKl'>Go back to add to cart <img src="img/strela.svg" /></button></Link>
             </div>
           ):(
             <div className="drawer__cost">
@@ -35,7 +37,7 @@ function Drawer({onClose, items=[],onRemove}) {
                 <div></div>
                 <b>60 dlr.</b>
               </div>
-              <button className='buttonKl'>Buy <img src="img/strela.svg" /></button>
+              <Link to="/purchases"><button onClick={onClose} className='buttonKl'>Buy <img src="img/strela.svg" /></button></Link>
             </div>
             </div>
           )}

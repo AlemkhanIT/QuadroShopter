@@ -1,6 +1,8 @@
 import React,{useEffect, useState} from "react";
+import {Route} from 'react-router-dom';
 import axios from "axios";
-import Cards from "./components/Cards/Cards";
+import Home from "./pages/Home";
+import Purchases from "./pages/Purchases";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
  function App() {
@@ -18,12 +20,16 @@ import Header from "./components/Header";
   },[]);
 
   
-  const onAddToCart = (obj) =>{
-    axios.post('https://63d6c3a7dc3c55baf43c1957.mockapi.io/cart', obj)
-    setItemsCart(prev=>[...prev,obj]);
+  const onAddToCart = async (obj) =>{  
+    try{
+      const {data} = await axios.post('https://63d6c3a7dc3c55baf43c1957.mockapi.io/cart', obj)
+      setItemsCart(prev=>[...prev,data]);} catch (error){
+        alert("Canted add to cart")
+      }   
+      
+    
   }
   const onRemoveItem = (id) =>{
-    console.log(id)
     axios.delete(`https://63d6c3a7dc3c55baf43c1957.mockapi.io/cart/${id}`)
     setItemsCart(prev=>prev.filter(item=>item.id!==id));
   }
@@ -36,29 +42,19 @@ import Header from "./components/Header";
       {isCarted?<div className="overlay">
         <Drawer items={itemsCart} onClose={()=>setIsCarted(!isCarted)} onRemove={onRemoveItem}/>
       </div>:null}
-    <Header 
-      onClickCart={()=>setIsCarted(!isCarted)}
-    />
-    <div className="content">
-      <div className="on__content">
-        <h1>{search?`Search on: "${search}"`:"The All Quadrocopters"}</h1>
-        <label className="search">
-          <img src="/img/search.svg"/>
-          <input onChange={onChangeSearch} className="search__input" type="text" placeholder="Search..." />
-        </label>
-      </div>
-      <div className="items">
-          {items.filter((item)=>item.title.toLowerCase().includes(search)).map((item,index)=>(
-            <Cards 
-            key={index}
-            title={item.title}
-            price={item.price}
-            imgUrl={item.imgUrl}
-            onClickPlus={(obj)=>onAddToCart(obj)}
-            />
-          ))}
-      </div>
-    </div>
+    <Header onClickCart={()=>setIsCarted(!isCarted)}/>
+      <Route path="/" exact>
+        <Home
+          items={items}
+          search={search}
+          setSearch={setSearch}
+          onChangeSearch={onChangeSearch}
+          onAddToCart={onAddToCart}
+        />
+      </Route>
+      <Route path="/purchases">
+        <Purchases items={itemsCart} onAddToCart={onAddToCart}/>
+      </Route>
     </div>
   );
 }

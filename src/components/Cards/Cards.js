@@ -1,10 +1,10 @@
 import React,{useState} from "react";
 import styles from "./Cards.module.scss"
 
-function Cards({imgUrl, title, price,onClickPlus,onClickLike}) {
-  const [isPlus,setIsPlus]=useState(false);
+function Cards({id,imgUrl, title, price,onClickPlus,plused=false,onRemove}) {
+  const [isPlus,setIsPlus]=useState(plused);
   const onPlus=()=>{
-    onClickPlus({title,imgUrl,price});
+    onClickPlus({id,title,imgUrl,price});
     setIsPlus(!isPlus);
   }
   return (
@@ -13,7 +13,7 @@ function Cards({imgUrl, title, price,onClickPlus,onClickLike}) {
           <h4>{title}</h4>
           <p>Cost:</p>
           <span>{price} dlr.</span>
-          <img className={isPlus?styles.activecarted:styles.carted} onClick={onPlus} src={isPlus?"/img/active_cart.svg":"/img/nonactive_cart.svg"}/>
+          {plused?"":<img className={isPlus?styles.activecarted:styles.carted} onClick={onPlus} src={isPlus?"/img/active_cart.svg":"/img/nonactive_cart.svg"}/>}
     </div>
   )
 }
